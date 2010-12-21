@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
 from divelog.models import Dive
 
 def index(request):
@@ -11,8 +12,8 @@ def index(request):
 def detail(request, dive_id):
     dive = get_object_or_404(Dive, pk=dive_id);
     return render_to_response('divelog/detail.html',
-    {
-        'dive':dive,
-    })
+                              {'dive': dive},
+                              context_instance=RequestContext(request))
+
 
 

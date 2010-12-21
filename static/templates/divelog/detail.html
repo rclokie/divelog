@@ -1,16 +1,1 @@
-<h1>{{ dive.location }} - {{ dive.date }} </h1>
-<b>Gear:</b>{{ dive.gear }} <br>
-<b>Weight:</b>{{ dive.weight }} <br>
-<b>Temperature:</b>{{ dive.temperature }} <br>
-<b>Vis:</b>{{ dive.vis }} <br>
-<b>Depth:</b>{{ dive.depth }} <br>
-<b>Comments:</b>{{ dive.comments }} <br>
-
-<ul>
-{% for photo in dive.photo_set.all %}
-<img src="{{ photo.image.url }}"> </img>
-<li>{{ photo.caption }}</li>
-<hl>
-{% endfor %}
-</ul>
-
+/home/rclokie/workspace/dives/divelog/detail.html

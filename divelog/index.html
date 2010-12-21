@@ -1,0 +1,10 @@
+{% if latest_dive_list %}
+<ul>
+{% for dive in latest_dive_list %}
+    <li><a href="/divelog/{{ dive.id }}/">{{ dive.location }} - {{ dive.date }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+    <p>No dives are available.</p>
+{% endif %}
+
