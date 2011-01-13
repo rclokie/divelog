@@ -1,26 +1,137 @@
-{% load comments %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="author" content="Richard Clokie" />
+	<title>{{ dive.date }} - {{ dive.location }}</title>
+	
+	<!-- Include the CSS stylesheets -->
+	<link href="static/styles/diving.css" rel="stylesheet" media="all" type="text/css"/>
+	
+</head>
+<body>
+	<div id="wrapper">
+	
+		<div id="content">
+			{% load comments %}
 
-<h1>{{ dive.location }} - {{ dive.date }} </h1>
-<b>Gear:</b>{{ dive.gear }} <br>
-<b>Weight:</b>{{ dive.weight }} <br>
-<b>Temperature:</b>{{ dive.temperature }} <br>
-<b>Vis:</b>{{ dive.vis }} <br>
-<b>Depth:</b>{{ dive.depth }} <br>
-<b>Comments:</b>{{ dive.comments }} <br>
+			<table>
+				<tr>
+					<td class="navigation">
+						<a href="/divelog/">
+							<img src="/static/media/previous.gif" class="navigation_img"/>
+							<br/>
+							Previous
+						</a>
+					</td>
+					<td class="navigation">
+						<a href="/divelog/">
+							<img src="/static/media/home.gif" class="navigation_img"/>
+							<br/>
+							Home
+						</a>
+					</td>
+					<td class="navigation">
+						<a href="/divelog/">
+							<img src="/static/media/next.gif" class="navigation_img"/>
+							<br/>
+							Next
+						</a>
+					</td>
+				</tr>
+			</table>
+	
+			<h1>{{ dive.location }}</h1>
+			<h2>{{ dive.date }}</h2>
 
-<ul>
-{% for photo in dive.photo_set.all %}
-    <img src="{{ photo.image.url }}"> </img>
-    <li>{{ photo.caption }}</li>
-    {% get_comment_list for photo as comment_list %}
-    {% for comment in comment_list %}
-        <b>{{ comment.user_name }} </b> said on {{ comment.submit_date }}<br>
-        {{ comment.comment }}<p>
-    {% endfor %}
+			<p class="comment">
+				{{ dive.comments }}
+			</p>
 
-    {% render_comment_form for photo %}
+			<table>
+				<tr>
+                                        <td class="label">Depth</td>
+                                        <td>{{ dive.depth }}</td>
+					<td class="map" rowspan="5">
+						{{ dive.mapUrl|safe}}
+					</td>	
+                                </tr>
 
-    <hl>
-{% endfor %}
-</ul>
+                                <tr>
+                                        <td class="label">Visibility</td>
+                                        <td>{{ dive.vis }}</td>
+                                </tr>
+
+                                <tr>
+                                        <td class="label">Temperature</td>
+                                        <td>{{ dive.temperature }}</td>
+                                </tr>
+
+                                <tr>
+                                        <td class="label">Weight</td>
+                                        <td>{{ dive.weight }}</td>
+                                </tr>
+
+				<tr>
+					<td class="label">Gear</td>
+					<td>{{ dive.gear }}</td>
+				</tr>
+			
+			</table>
+
+			<br/>
+			<h3>Photos</h3>
+
+			<table>
+			{% for photo in dive.photo_set.all %}
+				{% if forloop.counter == 1 %}	
+				    <tr>
+				{% endif %}
+
+				<td class="thumbnail">
+					<a href="{{ photo.image.url }}">
+						<img src="{{ photo.image.url }}" width="180px" height="135px"/>
+						<br/>
+			    			{{ photo.caption }}
+					</a>
+				</td>
+
+				{% if forloop.counter|divisibleby:"4" %}	
+			    		</tr>
+			    		<tr>
+				{% endif %}
+
+			{% endfor %}
+			</table>
+
+			<h3>Comments</h3>
+                        {% get_comment_list for dive as comment_list %}
+
+                        <table>
+			{% for comment in comment_list %}
+                                <tr>
+					<td class="comment_user">
+						{{ comment.user_name }}
+					</td>
+					<td rowspan="2">
+                                		{{ comment.comment }}
+					</td>
+                                </tr>
+                                <tr>
+					<td>
+						{{ comment.submit_date }}
+					</td>
+                                </tr>
+                        {% endfor %}
+			</table>
+
+			<br/>
+
+                        {% render_comment_form for dive %}
+			
+			<br/>
+
+		</div>
+	</div>
+</body>
 

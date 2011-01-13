@@ -7,7 +7,7 @@ class PhotoInline(admin.TabularInline):
     extra = 2
 
 class DiveAdmin(admin.ModelAdmin):
-    fields = ['date','location','vis','temperature','depth','gear','weight','comments']
+    fields = ['date','location','duration','vis','temperature','depth','gear','weight','comments','mapUrl']
     inlines = [PhotoInline]
 
 admin.site.register(Dive,DiveAdmin)

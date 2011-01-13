@@ -1,10 +1,63 @@
-{% if latest_dive_list %}
-<ul>
-{% for dive in latest_dive_list %}
-    <li><a href="/divelog/{{ dive.id }}/">{{ dive.location }} - {{ dive.date }}</a></li>
-{% endfor %}
-</ul>
-{% else %}
-    <p>No dives are available.</p>
-{% endif %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="author" content="Richard Clokie" />
+        <title>Diving Logs</title>
+
+        <!-- Include the CSS stylesheets -->
+        <link href="static/styles/diving.css" rel="stylesheet" media="all" type="text/css"/>
+
+</head>
+<body>
+        <div id="wrapper">
+
+                <div id="content">
+			
+
+			{% if latest_dive_list %}
+				<table>
+					{% for dive in latest_dive_list %}
+    						<tr>
+							<td colspan="4">
+								<h1>
+									<a href="/divelog/{{ dive.id }}/">{{ dive.location }}</a>
+								</h1>
+								<h2>
+									<a href="/divelog/{{ dive.id }}/">{{ dive.date }}</a>
+								</h2>
+							</td>
+						</tr>
+
+                        			{% for photo in dive.photo_set.all %}
+                                			{% if forloop.counter == 1 %}
+                                    				<tr>
+                                			{% endif %}
+
+                                			{% if forloop.counter <= 4 %}
+                                				<td class="thumbnail">
+                                       					<a href="/divelog/{{ dive.id }}">
+                                                				<img src="{{ photo.image.url }}" width="180px" height="135px" title="{{ photo.caption}}"/>
+                                        				</a>
+                                				</td>
+                                			{% endif %}
+
+                                			{% if forloop.counter == 4 %}
+                                        			</tr>
+                                			{% endif %}
+
+                        			{% endfor %}
+
+					{% endfor %}
+				</table>
+			{% else %}
+    				<p>No dives are available.</p>
+			{% endif %}
+
+			<h1>Dive Map</h1>
+			<iframe width="800" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.co.nz/maps/ms?ie=UTF8&amp;hl=en&amp;t=h&amp;msa=0&amp;msid=213292343750569297711.000497e137a294c1fe53a&amp;ll=-41.312629,174.80072&amp;spn=0.061504,0.109863&amp;z=13&amp;output=embed"></iframe><br />
+			
+		</div>
+	</div>
+</body>
 

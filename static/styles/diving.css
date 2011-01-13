@@ -1,0 +1,148 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body {
+	color:black;
+	font:12px "Copperplate Gothic Light", Helvetica, sans-serif;
+	background:#000000 url(/static/media/janeblackmore.jpg) repeat-y top center;
+}
+
+#wrapper {
+	width: 800px;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+#content {
+	margin:0 auto;
+	padding: 0;
+	width:800px;
+	height:auto;
+}
+
+h1 {
+	padding-bottom: 2px;
+	text-align:center;
+	font-size:30px;
+	line-height:35px;
+	border-bottom:#333366 1px solid;
+}
+
+h2 {
+	padding-top: 2px;
+	padding-bottom:20px;
+	padding-right:5px;
+	text-align:right;
+	font-size:14px;
+}
+
+h3 {
+	padding-top:2px;
+	padding-bottom:20px;
+	font-size:14px;
+	border-top:#333366 1px solid;
+}
+
+iframe {
+	border:#333366 2px solid;
+}
+
+table {
+	width:800px;
+}
+
+td {
+	vertical-align:top;
+	line-height:14px;
+	padding-bottom: 5px;
+}
+
+.comment {
+	padding-bottom:20px;
+	font-size:14px;
+	line-height:16px;
+	text-align:left;
+}
+
+.label {
+	font-weight:bold;
+	padding-right:10px;
+}
+
+.map {
+	width:400px;
+	text-align:center;
+}
+
+.thumbnail {
+	width:200px;
+	font-size:11px;
+	text-align:center;
+}
+
+.comment_user {
+	width:200px;
+	font-weight:bold;
+}
+
+.navigation {
+	width:50px;
+	font-size:12px;
+	text-align:center;
+}
+
+a {
+	text-decoration:none;
+	color:black;
+}
+
+a img {
+	border:#333366 2px solid;
+}
+
+.navigation_img {
+	border:none;
+}
+
+a img:hover {
+	border:#3399CC 2px solid;
+}
+
+.navigation_img:hover {
+	border:none;
+}
+
+p {
+	text-align:right;
+	padding:5px;
+}
+
+label {
+	font-weight:bold;
+	vertical-align:top;
+}
+
+#id_name, #id_comment {
+	width:700px;
+	padding:2px;
+	font:12px "Copperplate Gothic Light", Helvetica, sans-serif;
+}
+
+.submit-post, .submit-preview {
+	background-color:white;
+	color:black;
+	font:12px "Copperplate Gothic Light", Helvetica, sans-serif;
+	font-weight:bold;
+	line-height:14px;
+	width:80px;
+	padding:2px;
+}
+
+.submit-post:hover, .submit-preview:hover {
+	background-color:#333366;
+	color:white;
+}
+
+

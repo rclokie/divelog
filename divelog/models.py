@@ -12,10 +12,12 @@ class Dive (models.Model):
     location = models.CharField(max_length = 250)
     gear = models.TextField(blank = True)
     weight = models.CharField(max_length=250, blank = True)
+    duration = models.CharField(max_length=250, blank = True)
     temperature = models.CharField(max_length=250, blank = True)
     vis = models.CharField(max_length=250, blank = True)
     depth = models.CharField(max_length = 100, blank = True)
     comments = models.TextField(blank = True)
+    mapUrl = models.CharField(blank = True, max_length=1000)
 
     def __unicode__(self):
         return self.date.__str__() + " - " + self.location

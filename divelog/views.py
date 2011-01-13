@@ -3,7 +3,7 @@ from django.template import RequestContext
 from divelog.models import Dive
 
 def index(request):
-    latest_dive_list = Dive.objects.all().order_by('-date')[:5]
+    latest_dive_list = Dive.objects.all().order_by('-date', '-id')
     return render_to_response('divelog/index.html',
     {
         'latest_dive_list': latest_dive_list,
