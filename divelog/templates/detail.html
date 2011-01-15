@@ -45,7 +45,7 @@
 			<h2>{{ dive.date }}</h2>
 
 			<p class="comment">
-				{{ dive.comments }}
+				{{ dive.comments|linebreaks }}
 			</p>
 
 			<table>
@@ -83,14 +83,14 @@
 			<h3>Photos</h3>
 
 			<table>
-			{% for photo in dive.photo_set.all %}
+			{% for photo in dive.gallery.public.all.reverse %}
 				{% if forloop.counter == 1 %}	
 				    <tr>
 				{% endif %}
 
 				<td class="thumbnail">
-					<a href="{{ photo.image.url }}">
-						<img src="{{ photo.image.url }}" width="180px" height="135px"/>
+					<a href="{{ photo.get_display_url }}">
+						<img src="{{ photo.get_thumbnail_url }}" width="180px" height="135px"/>
 						<br/>
 			    			{{ photo.caption }}
 					</a>

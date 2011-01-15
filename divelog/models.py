@@ -1,12 +1,7 @@
 from django.db import models
 from time import gmtime, strftime
+from photologue.models import Gallery
 
-# TODO move this somewhere
-class PhotoPath:
-    def __call__(self, instance, filename):
-        return strftime("%Y-%m-%d/",gmtime()) + filename
-
-# Create your models here.
 class Dive (models.Model):
     date = models.DateField()
     location = models.CharField(max_length = 250)
@@ -18,18 +13,12 @@ class Dive (models.Model):
     depth = models.CharField(max_length = 100, blank = True)
     comments = models.TextField(blank = True)
     mapUrl = models.CharField(blank = True, max_length=1000)
-
+    gallery = models.ForeignKey(Gallery)
     def __unicode__(self):
         return self.date.__str__() + " - " + self.location
 
 
-class Photo (models.Model):
-    dive = models.ForeignKey(Dive)
-    image = models.ImageField(upload_to=PhotoPath()) 
-    caption = models.TextField(blank = True)
-
-    def __unicode__(self):
-        if (self.image == None ):
-            return "No Image"
-        return self.image.name + " (dive " + self.dive.__unicode__() + ")"
+#class DiveGallery (models.Model):
+#    dive = models.ForeignKey(Dive)
+#    gallery = models.ForeignKey(Gallery)
 
